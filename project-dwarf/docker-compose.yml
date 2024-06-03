@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: project_dwarf_app
+    ports:
+      - "8080:8080"
+    networks:
+      - springapimysql-net
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/project_dwarf?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: project_dwarf_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: project_dwarf
+    ports:
+      - "3306:3306"
+    networks:
+      - springapimysql-net
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+networks:
+  springapimysql-net:
+
+volumes:
+  mysql-data:
+
