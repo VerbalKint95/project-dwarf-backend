@@ -2,6 +2,7 @@ package com.maligno.projectdwarf.springboot.service;
 
 import java.util.Optional;
 
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,9 @@ import com.maligno.projectdwarf.springboot.exception.UserNotAuthenticatedExcepti
 import com.maligno.projectdwarf.springboot.exception.UserNotFoundException;
 import com.maligno.projectdwarf.springboot.model.User;
 import com.maligno.projectdwarf.springboot.repository.UserRepository;
+import com.maligno.projectdwarf.springboot.response.RoleResponse;
 import com.maligno.projectdwarf.springboot.response.UserResponse;
+import com.maligno.projectdwarf.springboot.security.Role;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,6 +42,11 @@ public class UserService{
 		return response;
     }
 
+	public RoleResponse getRole() throws UserNotAuthenticatedException {
+		Role role = this.getCurrentAuthenticatedUser().getRole();
+		RoleResponse response = createRoleResponse(role);
+		return response;
+	}
 
 	//response operations
 	private UserResponse createUserResponse(User user) {
@@ -50,11 +58,20 @@ public class UserService{
 		return response;
 	}
 
+	private RoleResponse createRoleResponse(Role role){
+		RoleResponse response = RoleResponse.builder()
+				.role(role.toString())
+			.build();
+		return response;
+	}
+
 	//repository operations
 	private User findUserById(Long id) throws UserNotFoundException {
 		Optional<User> optionalUser = userRepository.findById(id);
 		User user = optionalUser.orElseThrow(() -> new UserNotFoundException());
 		return user;
 	}
+
+	
 }
 

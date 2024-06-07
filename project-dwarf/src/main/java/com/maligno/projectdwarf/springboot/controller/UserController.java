@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.maligno.projectdwarf.springboot.exception.UserNotAuthenticatedException;
 import com.maligno.projectdwarf.springboot.exception.UserNotFoundException;
+import com.maligno.projectdwarf.springboot.response.RoleResponse;
 import com.maligno.projectdwarf.springboot.response.UserResponse;
 import com.maligno.projectdwarf.springboot.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,14 +24,14 @@ public class UserController {
 	private final UserService userService;
 	
 	@GetMapping("/role")
-	public ResponseEntity<String> getUserRole(){
-		String role;
+	public RoleResponse getUserRole(){
+		RoleResponse response;
 		try {
-			role = userService.getCurrentAuthenticatedUser().getRole().name();
+			response = userService.getRole();
 		} catch (UserNotAuthenticatedException e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "User not authenticated", e);
 		}
-		return ResponseEntity.ok(role);
+		return response;
 	}
 	
 	@GetMapping("/id")
