@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,7 @@ public class Topic {
 	@Column(unique = true)
 	private String content;
 	
-	@OneToOne
+	@OneToMany
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 	

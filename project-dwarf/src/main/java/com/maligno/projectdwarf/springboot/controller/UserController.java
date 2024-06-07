@@ -43,7 +43,6 @@ public class UserController {
 		}
 		return ResponseEntity.ok(id);
 	}
-
 	@GetMapping("/{id}")
 	public UserResponse getUserById(
 		@PathVariable Long id
@@ -56,5 +55,4 @@ public class UserController {
 		}
 		return response;
 	}
-	
 }
