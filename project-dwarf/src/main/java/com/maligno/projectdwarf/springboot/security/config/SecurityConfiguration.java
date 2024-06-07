@@ -43,7 +43,7 @@ public class SecurityConfiguration {
 		
 		return http.build();
 	}
-/*
+
 	@Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -55,5 +55,5 @@ public class SecurityConfiguration {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-*/
+
 }
