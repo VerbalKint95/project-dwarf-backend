@@ -87,9 +87,10 @@ public class DwarfService {
 	}
 
 
-	//
+	//response operation
 	private DwarfResponse createDwarfResponseFromDwarf(Dwarf d) {
 		DwarfResponse response = DwarfResponse.builder()
+				.id(d.getId())
 				.name(d.getName())
 				.bio(d.getBio())
 				.agility(d.getAgility())

@@ -124,6 +124,7 @@ public class TopicService {
 	
 	private CommentResponse createCommentResponse(Comment comment) {
 		CommentResponse response = CommentResponse.builder()
+				.id(comment.getId())
 				.content(comment.getContent())
 				.topicId(comment.getTopic().getId())
 				.userId(comment.getUser().getId())

@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 public class DwarfResponse {
 
 //attributes
+
+	private long id;
+
 	private String name;
 	
 	private String bio;

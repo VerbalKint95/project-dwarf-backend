@@ -29,14 +29,14 @@ public class Comment {
 	private long id;
 	
 	@ManyToOne
-    @JoinColumn(name = "topic_id", nullable = false, unique = true)
+    @JoinColumn(name = "topic_id", nullable = false)
     private Topic topic;
 	
 	@Column(unique = true)
 	private String content;
 	
 	@ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 	
 	@Column()

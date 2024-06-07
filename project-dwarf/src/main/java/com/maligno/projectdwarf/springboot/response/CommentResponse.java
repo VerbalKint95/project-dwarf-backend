@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class CommentResponse {
 
 //attributes
+	private long id;
 	private long topicId;
 	private String content;
 	private long userId;
