@@ -57,11 +57,11 @@ public class DwarfController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteDwarf(
-			@PathVariable long dwarfId
+			@PathVariable long id
 	) {
 		
 		try {
-			dwarfService.deleteDwarf(dwarfId);
+			dwarfService.deleteDwarf(id);
 		} catch (DwarfNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not find specified Dwarf. Unable to delete", e);
 		}
